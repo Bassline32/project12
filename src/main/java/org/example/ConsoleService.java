@@ -14,6 +14,19 @@ public class ConsoleService {
 
     }
 
+    public String getLoginInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите ник игрока ");
+        String nickname = scanner.nextLine();
+        return nickname;
+    }
+
+    public String getNicknameInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите логин игрока: ");
+        String login = scanner.nextLine();
+        return login;
+    }
 }
 
 
