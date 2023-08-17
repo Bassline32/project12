@@ -2,6 +2,9 @@ package org.example;
 
 import com.github.javafaker.Faker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dispatcher {
 
     public void invoke() {
@@ -15,10 +18,16 @@ public class Dispatcher {
         String fact = faker.chuckNorris().fact();
         System.out.println(fact);
 
+        consolePerson.getFilteredFakeUsers();
+
         String nicknameInput = console.getNicknameInput();
         String loginInput = console.getLoginInput();
 
         Person consolePersonUser = consolePerson.createUser(loginInput, nicknameInput);
         System.out.println(consolePersonUser.toString());
+
+
     }
+
+
 }
