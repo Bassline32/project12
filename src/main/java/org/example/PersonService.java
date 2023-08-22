@@ -2,6 +2,10 @@ package org.example;
 
 import com.github.javafaker.Faker;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +22,19 @@ public class PersonService {
         Faker faker = new Faker();
         String login = faker.name().username();
         String nickname = faker.name().username();
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().firstName();
+        String middleName = faker.name().firstName();
         Person person = new Person();
         person.setLogin(login);
         person.setNickname(nickname);
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
+        person.setMiddleName(middleName);
         return person;
     }
 
-    public void getFilteredFakeUsers() {
+    public List<Person> getFilteredFakeUsers() {
         List<Person> fakePersons = new ArrayList<>();
         List<Person> filteredFakePersons = new ArrayList<>();
 
@@ -41,6 +51,7 @@ public class PersonService {
         }
 
         System.out.println(filteredFakePersons);
+        return fakePersons;
     }
 
     private void checkLoginNaming(Person filtered, List<Person> filteredFakePersons) {
@@ -49,4 +60,24 @@ public class PersonService {
             filteredFakePersons.add(filtered);
         }
     }
+
+    public void insertPersons() {
+        List<Person> fakeUsers = getFilteredFakeUsers();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres",
+                    "postgres");
+            Statement statement = connection.createStatement();
+            for (Person insert : fakeUsers) {
+                statement.executeUpdate("INSERT INTO persons (first_name, last_name, middle_name)" +
+                        " VALUES ('" + insert.getFirstName() + "','" + insert.getLastName() + "','" + insert.getMiddleName() + "');");
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 }

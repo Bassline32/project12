@@ -2,9 +2,6 @@ package org.example;
 
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Dispatcher {
 
     public void invoke() {
@@ -26,7 +23,7 @@ public class Dispatcher {
         Person consolePersonUser = consolePerson.createUser(loginInput, nicknameInput);
         System.out.println(consolePersonUser.toString());
 
-
+        consolePerson.insertPersons();
     }
 
 
