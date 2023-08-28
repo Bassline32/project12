@@ -6,25 +6,26 @@ public class Dispatcher {
 
     public void invoke() {
         ConsoleService console = new ConsoleService();
-        PersonService consolePerson = new PersonService();
+        PersonService personService = new PersonService();
         Faker faker = new Faker();
+        if (false) {
+            Person fakeUser = personService.createFakeUser();
+            System.out.println(fakeUser);
 
-        Person fakeUser = consolePerson.createFakeUser();
-        System.out.println(fakeUser);
+            String fact = faker.chuckNorris().fact();
+            System.out.println(fact);
 
-        String fact = faker.chuckNorris().fact();
-        System.out.println(fact);
+            personService.getFilteredFakeUsers();
 
-        consolePerson.getFilteredFakeUsers();
+            String nicknameInput = console.getNicknameInput();
+            String loginInput = console.getLoginInput();
 
-        String nicknameInput = console.getNicknameInput();
-        String loginInput = console.getLoginInput();
+            Person consolePersonUser = personService.createUser(loginInput, nicknameInput);
+            System.out.println(consolePersonUser.toString());
+            personService.insertPersons();
 
-        Person consolePersonUser = consolePerson.createUser(loginInput, nicknameInput);
-        System.out.println(consolePersonUser.toString());
+        }
+        personService.checkPerson();
 
-        consolePerson.insertPersons();
     }
-
-
 }

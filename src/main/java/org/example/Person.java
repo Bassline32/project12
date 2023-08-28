@@ -24,16 +24,6 @@ public class Person {
         this.nickname = nickname;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "login='" + login + '\'' +
-                ", nickname='" + nickname + '\'' +
-                '}';
-
-
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -56,6 +46,17 @@ public class Person {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "login='" + login + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                '}';
     }
 }
 
