@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonService {
+
     public Person createUser(String login, String nickname) {
         Person person = new Person();
         person.setLogin(login);

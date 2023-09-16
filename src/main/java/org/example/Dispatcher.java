@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 
 public class Dispatcher {
 
+
     public void invoke() {
         ConsoleService console = new ConsoleService();
         PersonService personService = new PersonService();
@@ -26,6 +27,10 @@ public class Dispatcher {
 
         }
         personService.checkPerson();
-
+        HebirnateUtil hebirnateUtil = new HebirnateUtil();
+        System.out.println(hebirnateUtil.getAllPersons());
+        System.out.println(hebirnateUtil.getByMiddleName("Benito"));
+        System.out.println(hebirnateUtil.getByFirstName("Lucina"));
+        System.out.println(hebirnateUtil.getByLastName("Lindgren"));
     }
 }
