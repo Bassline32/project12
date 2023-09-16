@@ -100,7 +100,7 @@ public class HebirnateUtil {
         }
         return persons;
     }
-    public List<Person> getByLastName(String lindgren) {
+    public List<Person> getByLastName(String lastName) {
         List<Person> persons = null;
         Session session = sessionFactory.openSession();
         try {
