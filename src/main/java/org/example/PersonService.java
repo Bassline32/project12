@@ -1,6 +1,8 @@
 package org.example;
 
 import com.github.javafaker.Faker;
+import lombok.SneakyThrows;
+import org.example.entity.Person;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,6 +61,7 @@ public class PersonService {
         }
     }
 
+    @SneakyThrows
     public void insertPersons() {
         List<Person> fakeUsers = getFilteredFakeUsers();
         try {
@@ -120,6 +123,7 @@ public class PersonService {
         }
         return middlePerson;
     }
+
     public Person getByFirstName(PreparedStatement statement, String lastName) {
         Person firstPerson = new Person();
         try {
@@ -159,26 +163,23 @@ public class PersonService {
             Person personLastName = getByLastName(DatabaseUtils.getConnection().prepareStatement("SELECT * FROM persons WHERE last_name = ?"), dataFaker.name().lastName());
             Person personMiddleName = getByMiddleName(DatabaseUtils.getConnection().prepareStatement("SELECT * FROM persons WHERE middle_name = ?"), dataFaker.name().lastName());
             List<Person> persons = getAllPersons(DatabaseUtils.getConnection().createStatement());
-            if (personFirstNme.getFirstName() != null&& personFirstNme.getLastName() != null&& personFirstNme.getMiddleName() != null){
+            if (personFirstNme.getFirstName() != null && personFirstNme.getLastName() != null && personFirstNme.getMiddleName() != null) {
                 System.out.println(personFirstNme);
-            }
-            else {
+            } else {
                 System.out.println(" не найдено по firstName.");
             }
-            if (personLastName.getFirstName() != null&& personLastName.getLastName() != null&& personLastName.getMiddleName() != null){
+            if (personLastName.getFirstName() != null && personLastName.getLastName() != null && personLastName.getMiddleName() != null) {
                 System.out.println(personLastName);
-            }
-            else {
+            } else {
                 System.out.println(" не найдено по lastName. ");
             }
-            if (personMiddleName.getFirstName() != null&& personMiddleName.getLastName() != null&& personMiddleName.getMiddleName() != null){
+            if (personMiddleName.getFirstName() != null && personMiddleName.getLastName() != null && personMiddleName.getMiddleName() != null) {
                 System.out.println(personMiddleName);
-            }
-            else {
+            } else {
                 System.out.println(" не найдено по middleName. ");
             }
             System.out.println(persons);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 

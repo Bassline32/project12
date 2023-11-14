@@ -1,7 +1,8 @@
 package org.example;
 
 
-import org.hibernate.HibernateException;
+import lombok.SneakyThrows;
+import org.example.entity.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -72,46 +73,44 @@ public class HebirnateUtil {
         return persons;
     }
 
+    @SneakyThrows
     public List<Person> getByMiddleName(String middleName) {
-        List<Person> persons = null;
+
         Session session = sessionFactory.openSession();
-        try {
-            Query query = session.createQuery("from Person where middleName=:middleName");
-            query.setParameter("middleName", middleName);
-            persons = query.list();
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            session.close();
-        }
+
+        Query query = session.createQuery("from Person where middleName=:middleName");
+        query.setParameter("middleName", middleName);
+        List<Person> persons = query.list();
+
+        session.close();
+
         return persons;
     }
+
+    @SneakyThrows
     public List<Person> getByFirstName(String firstName) {
-        List<Person> persons = null;
+
         Session session = sessionFactory.openSession();
-        try {
-            Query query = session.createQuery("from Person where firstName=:firstName");
-            query.setParameter("firstName", firstName);
-            persons = query.list();
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            session.close();
-        }
+
+        Query query = session.createQuery("from Person where firstName=:firstName");
+        query.setParameter("firstName", firstName);
+        List<Person> persons = query.list();
+
+        session.close();
+
         return persons;
     }
+
+    @SneakyThrows
     public List<Person> getByLastName(String lastName) {
-        List<Person> persons = null;
+
         Session session = sessionFactory.openSession();
-        try {
-            Query query = session.createQuery("from Person where lastName=:lastName");
-            query.setParameter("lastName", lastName);
-            persons = query.list();
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            session.close();
-        }
+        Query query = session.createQuery("from Person where lastName=:lastName");
+        query.setParameter("lastName", lastName);
+        List<Person> persons = query.list();
+
+        session.close();
+
         return persons;
     }
 

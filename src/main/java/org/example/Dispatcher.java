@@ -1,6 +1,8 @@
 package org.example;
 
 import com.github.javafaker.Faker;
+import org.example.entity.Person;
+import org.example.service.ConsoleService;
 
 public class Dispatcher {
 
